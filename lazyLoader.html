@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="css/base.css"> -->
+    <!--[if lt IE 9]>
+        <script type="text/javascript" src="html5shiv.js"></script>
+    <![endif]-->
+    <style>
+       img{
+           width: 100%;
+           height: 100%
+       }
+    </style>
+</head>
+<body>
+    <img class="lazy" data-original="img/bmw_m1_hood.jpg">
+    <img class="lazy" data-original="img/bmw_m1_side.jpg">
+    <img class="lazy" data-original="img/viper_1.jpg">
+    <img class="lazy" data-original="img/viper_corner.jpg">
+    <img class="lazy" data-original="img/bmw_m3_gt.jpg">
+    <img class="lazy" data-original="img/corvette_pitstop.jpg">
+    <img class="lazy" data-original="img/bmw_m1_hood.jpg">
+    <img class="lazy" data-original="img/banner02.jpg">
+    <img class="lazy" data-original="img/banner03.jpg">
+    <img class="lazy" data-original="img/banner04.jpg">
+    <img class="lazy" data-original="img/banner05.jpg">
+    <img class="lazy" data-original="img/corvette_pitstop.jpg">
+    <label>照相机</label>
+    <input type="file" id='image' accept="image/*" capture='camera'>
+    <br>
+    <label>摄像机</label>
+    <input type="file" id='video' accept="video/*" capture='camcorder'>
+</body>
+<script src="jquery-1.11.0.min.js"></script>
+<script src="jquery.lazyload.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $(function() {
+        $("img.lazy").lazyload({
+            effect: "fadeIn",
+            placeholder : "img/grey.gif"
+        });
+        var file = document.querySelector('input');
+        if (getIos()) {
+            file.removeAttribute("capture");
+        }
+        function getIos() {
+            var ua=navigator.userAgent.toLowerCase();
+            if (ua.match(/iPhone\sOS/i) == "iphone os") {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    });
+    !function(){
+        var windowWidth= $(window).width();
+        if(windowWidth > 750) {
+            windowWidth = 750;
+        }
+        var fontSize = windowWidth / 750 * 50;//50是html根元素font-size值
+
+        $("html").attr("style", "font-size:" + fontSize + "px");
+        $(window).resize(function() {
+            windowWidth = $(window).width();
+            if(windowWidth > 750) {
+                windowWidth = 750;
+            }
+            fontSize = windowWidth / 750 * 50;
+            $("html").attr("style", "font-size:" + fontSize + "px");
+        });
+    }();
+</script>
+</html>
